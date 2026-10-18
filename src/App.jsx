@@ -10,10 +10,7 @@ import Queries from "./pages/Queries";
 import Insights from "./pages/Insights";
 
 export default function App() {
-  // `?demo` opens straight into demo mode (handy for showing the dashboard without real data).
-  const [session, setSession] = useState(() =>
-    loadSession() || (new URLSearchParams(window.location.search).has("demo") ? { mode: "demo", name: "Demo user" } : null),
-  );
+  const [session, setSession] = useState(loadSession);
   const [notice, setNotice] = useState("");
 
   const signIn = (s) => {

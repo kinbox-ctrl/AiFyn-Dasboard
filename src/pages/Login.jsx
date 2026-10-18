@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Lock, FlaskConical } from "lucide-react";
+import { Lock } from "lucide-react";
 import { login } from "../lib/api";
 import { Mark } from "../components/ui";
 
@@ -40,10 +40,6 @@ export default function Login({ onSignIn, notice }) {
         <input className="input" type="password" placeholder="Dashboard password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" aria-label="Password" />
         {error && <div className="error" role="alert">{error}</div>}
         <button className="btn btn-warm" type="submit" disabled={busy}><Lock size={15} /> {busy ? "Signing in…" : "Sign in"}</button>
-        <div className="divider">or</div>
-        <button type="button" className="btn" onClick={() => onSignIn({ mode: "demo", name: name.trim() || "Demo user" })}>
-          <FlaskConical size={15} /> Explore with demo data
-        </button>
       </form>
     </main>
   );

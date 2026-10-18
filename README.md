@@ -26,9 +26,6 @@ worker/index.js  API: /api/login, /api/traffic, /api/live, /api/leads (+ PATCH, 
 
 Date ranges: Today (hourly), 7, 30, 90 days. Light/dark theme. Works on mobile.
 
-**Demo mode:** "Explore with demo data" on the sign-in screen (or open `/?demo`) loads ~90 days of realistic sample data
-generated in the browser — nothing is saved.
-
 ## How the data gets here (changes in AiFyn)
 
 The website now records page views itself (no cookies, no third-party script):
