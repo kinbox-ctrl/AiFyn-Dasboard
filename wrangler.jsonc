@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "aifyn-dashboard",
+  "main": "worker/index.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  // Same D1 database as the website (AiFyn-main). The site owns the schema: run its migrations
+  // (`npm run db:migrate` in AiFyn-main) before deploying this dashboard.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "aifyn-db",
+      "database_id": "da0d3ae2-d306-48b9-a3f0-296816172d5d"
+    }
+  ],
+  // Secret (not committed): `npx wrangler secret put DASHBOARD_PASSWORD`.
+  "vars": {
+    // Names offered in the "Assigned to" picker, comma-separated.
+    "TEAM": "Raghav Gupta,Nidhi Bhardwaj Jha"
+  },
+  // The website's `wrangler dev` uses 8787.
+  "dev": { "port": 8788 },
+  "keep_vars": true,
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": true }
+}
