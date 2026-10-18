@@ -20,6 +20,8 @@
   ],
   // Secret (not committed): `npx wrangler secret put DASHBOARD_PASSWORD`.
   "vars": {
+    // Sign-in username (the password is the DASHBOARD_PASSWORD secret).
+    "DASHBOARD_USER": "aifyn",
     // Names offered in the "Assigned to" picker, comma-separated.
     "TEAM": "Raghav Gupta,Nidhi Bhardwaj Jha"
   },

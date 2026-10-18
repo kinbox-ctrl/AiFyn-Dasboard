@@ -15,7 +15,7 @@ export default function Login({ onSignIn, notice }) {
 
   const submit = async (e) => {
     e.preventDefault();
-    if (!name.trim()) return setError("Enter your name — it appears on notes and changes.");
+    if (!name.trim()) return setError("Enter the username.");
     setBusy(true);
     setError("");
     try {
@@ -36,7 +36,7 @@ export default function Login({ onSignIn, notice }) {
           <h1>AiFyn Control Room</h1>
           <p className="muted" style={{ margin: "4px 0 0" }}>Website traffic and demo-request management. Team only.</p>
         </div>
-        <input className="input" placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" aria-label="Your name" />
+        <input className="input" placeholder="Username" value={name} onChange={(e) => setName(e.target.value)} autoComplete="username" aria-label="Username" />
         <input className="input" type="password" placeholder="Dashboard password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" aria-label="Password" />
         {error && <div className="error" role="alert">{error}</div>}
         <button className="btn btn-warm" type="submit" disabled={busy}><Lock size={15} /> {busy ? "Signing in…" : "Sign in"}</button>

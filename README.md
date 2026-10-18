@@ -57,6 +57,7 @@ The website now records page views itself (no cookies, no third-party script):
    npm run deploy
    ```
 
+   Sign in with username `aifyn` (`DASHBOARD_USER` in `wrangler.jsonc`) and that password.
    Edit `TEAM` in `wrangler.jsonc` to change the names offered in "Assigned to".
    Add a custom domain (e.g. `dashboard.aifyn.in`) in Cloudflare → Workers → aifyn-dashboard → Domains & Routes.
 

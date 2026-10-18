@@ -233,9 +233,12 @@ async function handleApi(request, env, path) {
     if (!env.DASHBOARD_PASSWORD) return json({ detail: "Dashboard password not configured" }, 503);
     const { name = "", password = "" } = await request.json().catch(() => ({}));
     const who = clean(name, 80);
-    if (!who) return json({ detail: "Name is required" }, 422);
-    if (!(await safeEqual(String(password), env.DASHBOARD_PASSWORD))) return json({ detail: "Invalid password" }, 401);
-    return json({ token: await issueToken(env, who), name: who });
+    if (!who) return json({ detail: "Username is required" }, 422);
+    // Single shared sign-in: username from DASHBOARD_USER (default "aifyn"), password from the secret.
+    const expected = env.DASHBOARD_USER || "aifyn";
+    const [userOk, passOk] = await Promise.all([safeEqual(who.toLowerCase(), expected.toLowerCase()), safeEqual(String(password), env.DASHBOARD_PASSWORD)]);
+    if (!userOk || !passOk) return json({ detail: "Invalid username or password" }, 401);
+    return json({ token: await issueToken(env, expected), name: expected });
   }
 
   const user = await verifyToken(env, request.headers.get("x-dashboard-token"));
